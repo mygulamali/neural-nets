@@ -2,6 +2,9 @@ module MNISTData
   class DataUnpackingError < RuntimeError
   end
 
+  class IndexOutOfRangeError < RuntimeError
+  end
+
   class Labels
     def initialize(filename)
       datafile = File.binread(filename)
@@ -15,7 +18,8 @@ module MNISTData
     end
 
     def label(index)
-      @data[index] if index.between?(0, count - 1)
+      raise IndexOutOfRangeError if index.between?(0, count - 1)
+      @data[index]
     end
   end
 
@@ -40,11 +44,10 @@ module MNISTData
     end
 
     def image(index)
-      if index.between?(0, count - 1)
-        pixels = width*height
-        range = (index*pixels...(index + 1)*pixels)
-        @data[range]
-      end
+      raise IndexOutOfRangeError if index.between?(0, count - 1)
+      pixels = width*height
+      range = (index*pixels...(index + 1)*pixels)
+      @data[range]
     end
   end
 end
