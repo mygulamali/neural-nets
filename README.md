@@ -81,16 +81,16 @@ gunzip *.gz
 This software is released under the terms and conditions of [The MIT License][license].
 Please see the LICENSE.txt file for more details.
 
-[atlas]: http://math-atlas.sourceforge.net/
-[gcc]: https://gcc.gnu.org/
-[imagemagick]: http://www.imagemagick.org/
-[license]: http://www.opensource.org/licenses/mit-license.php
-[mnist-data]: http://yann.lecun.com/exdb/mnist/
-[nielsen]: http://michaelnielsen.org/
-[nmatrix]: https://github.com/SciRuby/nmatrix
-[nmatrix-installation]: https://github.com/SciRuby/nmatrix/wiki/Installation
-[osx]: https://www.apple.com/osx/
-[osx-sdks]: https://github.com/phracker/MacOSX-SDKs
-[osx-sdks-mediafire]: https://www.mediafire.com/?a4g384ysgy5rg
-[ruby]: https://www.ruby-lang.org/en/
-[tutorial]: http://neuralnetworksanddeeplearning.com/
+[atlas]: http://math-atlas.sourceforge.net/ "ATLAS"
+[gcc]: https://gcc.gnu.org/ "GCC"
+[imagemagick]: http://www.imagemagick.org/ "Imagemagick"
+[license]: http://www.opensource.org/licenses/mit-license.php "The MIT License"
+[mnist-data]: http://yann.lecun.com/exdb/mnist/ "The MNIST database of handwritten digits"
+[nielsen]: http://michaelnielsen.org/ "Michael Nielsen"
+[nmatrix]: https://github.com/SciRuby/nmatrix "NMatrix"
+[nmatrix-installation]: https://github.com/SciRuby/nmatrix/wiki/Installation "NMatrix installation wiki"
+[osx]: https://www.apple.com/osx/ "OS X Yosemite"
+[osx-sdks]: https://github.com/phracker/MacOSX-SDKs "Mac OS X SDKs"
+[osx-sdks-mediafire]: https://www.mediafire.com/?a4g384ysgy5rg "individual Mac OS X SDKs"
+[ruby]: https://www.ruby-lang.org/en/ "Ruby"
+[tutorial]: http://neuralnetworksanddeeplearning.com/ "Neural Networks and Deep Learning"
