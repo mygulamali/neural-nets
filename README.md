@@ -76,9 +76,15 @@ gunzip *.gz
 
 ...
 
+## License
+
+This software is released under the terms and conditions of [The MIT License][license].
+Please see the LICENSE.txt file for more details.
+
 [atlas]: http://math-atlas.sourceforge.net/
 [gcc]: https://gcc.gnu.org/
 [imagemagick]: http://www.imagemagick.org/
+[license]: http://www.opensource.org/licenses/mit-license.php
 [mnist-data]: http://yann.lecun.com/exdb/mnist/
 [nielsen]: http://michaelnielsen.org/
 [nmatrix]: https://github.com/SciRuby/nmatrix
