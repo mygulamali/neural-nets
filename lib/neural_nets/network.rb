@@ -7,6 +7,15 @@ module NeuralNets
       initialize_weights
     end
 
+    ##
+    # Return the output of the network if "a" is input.
+    def feedforward(a)
+      @biases.zip(@weights).each do |b, w|
+        a = NeuralNets::Math.sigmoid_vec(w.dot(a) + b)
+      end
+      a
+    end
+
     private
 
     def initialize_biases
