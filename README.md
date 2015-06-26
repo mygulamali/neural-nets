@@ -76,6 +76,11 @@ gunzip *.gz
 
 ...
 
+## To do
+
++ Use Gaussian distributed random numbers instead of Uniform distributed random
+numbers to initialize biases and weights in `NeuralNets::Network`.
+
 ## License
 
 This software is released under the terms and conditions of [The MIT License][license].
