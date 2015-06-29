@@ -12,5 +12,20 @@ module NeuralNets
       one = NMatrix.ones([x.rows, x.cols])
       one/(one + (-x).exp)
     end
+
+    ##
+    # Derivative of the sigmoid function
+    def self.sigmoid_prime(x)
+      sigma = self.sigmoid(x)
+      sigma*(1.0 - sigma)
+    end
+
+    ##
+    # NMatrix version of the derivative of the sigmoid function
+    def self.sigmoid_prime_vec(x)
+      one = NMatrix.ones([x.rows, x.cols])
+      sigma = self.sigmoid_vec(x)
+      sigma.dot(one - sigma)
+    end
   end
 end
