@@ -18,7 +18,7 @@ module MNISTData
     end
 
     def label(index)
-      raise IndexOutOfRangeError if index.between?(0, count - 1)
+      raise IndexOutOfRangeError unless index.between?(0, count - 1)
       @data[index]
     end
   end
@@ -44,7 +44,7 @@ module MNISTData
     end
 
     def image(index)
-      raise IndexOutOfRangeError if index.between?(0, count - 1)
+      raise IndexOutOfRangeError unless index.between?(0, count - 1)
       pixels = width*height
       range = (index*pixels...(index + 1)*pixels)
       @data[range]
