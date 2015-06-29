@@ -38,5 +38,12 @@ module NeuralNets
         NMatrix.random([tuple.first, tuple.last])
       end
     end
+
+    ##
+    # Return the vector of partial derivatives \partial C_x / \partial a for the
+    # output activations.
+    def cost_derivative(output_activations, y)
+      output_activations - y
+    end
   end
 end
