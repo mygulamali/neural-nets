@@ -1,5 +1,3 @@
-require 'nmatrix'
-
 module NeuralNets
   class Math
     def self.sigmoid(x)
