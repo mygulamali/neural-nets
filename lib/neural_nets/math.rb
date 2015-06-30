@@ -25,7 +25,7 @@ module NeuralNets
     def self.sigmoid_prime_vec(x)
       one = NMatrix.ones(x.shape)
       sigma = self.sigmoid_vec(x)
-      sigma.dot(one - sigma)
+      sigma*(one - sigma)
     end
   end
 end
