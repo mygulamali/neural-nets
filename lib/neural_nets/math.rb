@@ -9,7 +9,7 @@ module NeuralNets
     ##
     # NMatrix version of the sigmoid function
     def self.sigmoid_vec(x)
-      one = NMatrix.ones([x.rows, x.cols])
+      one = NMatrix.ones(x.shape)
       one/(one + (-x).exp)
     end
 
@@ -23,7 +23,7 @@ module NeuralNets
     ##
     # NMatrix version of the derivative of the sigmoid function
     def self.sigmoid_prime_vec(x)
-      one = NMatrix.ones([x.rows, x.cols])
+      one = NMatrix.ones(x.shape)
       sigma = self.sigmoid_vec(x)
       sigma.dot(one - sigma)
     end
