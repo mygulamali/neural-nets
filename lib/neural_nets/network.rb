@@ -42,7 +42,7 @@ module NeuralNets
     ##
     # Return the vector of partial derivatives \partial C_x / \partial a for the
     # output activations.
-    def cost_derivative(output_activations, y)
+    def self.cost_derivative(output_activations, y)
       output_activations - y
     end
   end
