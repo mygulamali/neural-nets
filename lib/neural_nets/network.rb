@@ -25,6 +25,33 @@ module NeuralNets
       a
     end
 
+    ##
+    # Train the neural network using mini-batch stochastic gradient descent.
+    # The "training_data" is a list of tuples "[x, y]" representing the training
+    # inputs and the desired outputs.  The other non-optional parameters are
+    # self-explanatory.  If "test_data" is provided then the network will be
+    # evaluated against the test data after each epoch, and partial progress
+    # printed out.  This is useful for tracking progress, but slows things down
+    # substantially.
+    def sgd(training_data, epochs, mini_batch_size, eta, test_data=nil)
+      n_test = test_data.length if test_data
+      n = training_data.length
+
+      (0..epochs).each do |j|
+        training_data.shuffle!
+
+        mini_batches(training_data, mini_batch_size).each do |mini_batch|
+          update_mini_batch(mini_batch, eta)
+        end
+
+        if test_data
+          puts "Epoch #{j}: #{evaluate(test_data)} / #{n_test}"
+        else
+          puts "Epoch #{j} complete"
+        end
+      end
+    end
+
     private
 
     def initialize_biases
@@ -45,6 +72,10 @@ module NeuralNets
 
     def initial_nabla_w
       @weights.collect { |w| NMatrix.zeros(w.shape) }
+    end
+
+    def mini_batches(training_data, size)
+      (0...training_data.length).step(size).collect { |k| training_data.slice(k, size) }
     end
 
     ##
