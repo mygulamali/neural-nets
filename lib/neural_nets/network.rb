@@ -40,6 +40,20 @@ module NeuralNets
     end
 
     ##
+    # Return the number of test inputs for which the neural network outputs the
+    # correct result. Note that the neural network's output is assumed to be the
+    # index of whichever neuron in the final layer has the highest activation.
+    def evaluate(test_data)
+      test_results = test_data.collect do |x, y|
+        result = feedforward(x)
+        observed_node = result.to_flat_a.find_index(result.max.to_f)
+        expected_node = y.to_flat_a.find_index(y.max.to_f)
+        observed_node == expected_node ? 1 : 0
+      end
+      test_results.inject(0, :+)
+    end
+
+    ##
     # Return the vector of partial derivatives \partial C_x / \partial a for the
     # output activations.
     def self.cost_derivative(output_activations, y)
