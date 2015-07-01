@@ -39,6 +39,14 @@ module NeuralNets
       end
     end
 
+    def initial_nabla_b
+      @biases.collect { |b| NMatrix.zeros(b.shape) }
+    end
+
+    def initial_nabla_w
+      @weights.collect { |w| NMatrix.zeros(w.shape) }
+    end
+
     ##
     # Update the network's weights and biases by applying gradient descent using
     # backpropagation to a single mini batch.  The "mini_batch" is a list of
