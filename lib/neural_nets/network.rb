@@ -40,6 +40,47 @@ module NeuralNets
     end
 
     ##
+    # Return a tuple "[nabla_b, nabla_w]" representing the gradient for the cost
+    # function C_x.  "nabla_b" and "nabla_w" are layer-by-layer lists of NMatrix
+    # arrays, similar to "@biases" and "@weights".
+    def backprop(x, y)
+      nabla_b = initial_nabla_b
+      nabla_w = initial_nabla_w
+
+      # feedforward
+      activation = x
+      activations = [x] # list to store all the activations, layer by layer
+      zs = [] # list to store all the z vectors, layer by layer
+
+      @biases.zip(@weights).each do |b, w|
+        z = w.dot(activation) + b
+        zs.push(z)
+        activation = Math.sigmoid_vec(z)
+        activations.push(activation)
+      end
+
+      # backward pass
+      delta = Network.cost_derivative(activations[-1], y) * Math.sigmoid_prime_vec(zs[-1])
+      nabla_b[-1] = delta
+      nabla_w[-1] = delta.dot(activations[-2].transpose)
+
+      # Note that the variable l in the loop below is used a little differently
+      # to the notation in Chapter 2 of the book.  Here, l = 1 means the last
+      # layer of neurons, l = 2 is the second-last layer, and so on.  It's a
+      # renumbering of the scheme in the book, used here to take advantage of
+      # the fact that Ruby (like Python) can use negative indices in lists.
+      (2...@num_layers).each do |l|
+        z = zs[-l]
+        spv = Math.sigmoid_prime_vec(z)
+        delta = @weights[-l + 1].transpose.dot(delta) * spv
+        nabla_b[-l] = delta
+        nabla_w[-l] = delta.dot(activations[-l - 1].transpose)
+      end
+
+      [nabla_b, nabla_w]
+    end
+
+    ##
     # Return the number of test inputs for which the neural network outputs the
     # correct result. Note that the neural network's output is assumed to be the
     # index of whichever neuron in the final layer has the highest activation.
