@@ -40,6 +40,29 @@ module NeuralNets
     end
 
     ##
+    # Update the network's weights and biases by applying gradient descent using
+    # backpropagation to a single mini batch.  The "mini_batch" is a list of
+    # tuples "[x, y]", and "eta" is the learning rate.
+    def update_mini_batch(mini_batch, eta)
+      nabla_b = initial_nabla_b
+      nabla_w = initial_nabla_w
+
+      mini_batch.each do |x, y|
+        delta_nabla = backprop(x, y)
+        nabla_b = nabla_b.zip(delta_nabla.first).collect { |nb, dnb| nb + dnb }
+        nabla_w = nabla_w.zip(delta_nabla.last).collect { |nw, dnw| nw + dnw }
+      end
+
+      @weights = @weights.zip(nabla_w).collect do |w, nw|
+        (w - eta / mini_batch.length)*nw
+      end
+
+      @biases = @biases.zip(nabla_b).collect do |b, nb|
+        (b - eta / mini_batch.length)*nb
+      end
+    end
+
+    ##
     # Return a tuple "[nabla_b, nabla_w]" representing the gradient for the cost
     # function C_x.  "nabla_b" and "nabla_w" are layer-by-layer lists of NMatrix
     # arrays, similar to "@biases" and "@weights".
