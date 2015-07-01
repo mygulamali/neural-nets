@@ -1,3 +1,5 @@
+require 'nmatrix'
+
 module MNISTData
   class DataUnpackingError < RuntimeError
   end
@@ -20,6 +22,14 @@ module MNISTData
     def label(index)
       raise IndexOutOfRangeError unless index.between?(0, count - 1)
       @data[index]
+    end
+
+    def as_matrices
+      (0...count).collect do |index|
+        nmatrix = NMatrix.zeros([10, 1])
+        nmatrix[label(index).to_i, 0] = 1.0
+        nmatrix
+      end
     end
   end
 
@@ -48,6 +58,10 @@ module MNISTData
       pixels = width*height
       range = (index*pixels...(index + 1)*pixels)
       @data[range]
+    end
+
+    def as_matrices
+      (0...count).collect { |index| NMatrix.new([height*width, 1], image(index)) }
     end
   end
 end
